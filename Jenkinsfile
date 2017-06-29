@@ -33,7 +33,7 @@ node('docker') {
 
       stage('Docker Push') {
         docker.withRegistry('https://${conf.REGISTRY}', 'ecr:us-east-1:poc-ecr-credentials') {
-          image.push()
+          docker.image("exfodemo").push()
         }
       }
 
