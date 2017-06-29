@@ -32,7 +32,7 @@ node('docker') {
       }
 
       stage('Docker Push') {
-        docker.withRegistry('https://${conf.REGISTRY}') {
+        docker.withRegistry('https://${conf.REGISTRY}', conf.REGISTRY) {
           image.push()
         }
       }
