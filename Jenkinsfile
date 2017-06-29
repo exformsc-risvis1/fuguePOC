@@ -28,12 +28,12 @@ node('docker') {
 
       stage('Docker Build') {
         conf.DOCKER_IMAGE = "${conf.REGISTRY}/${conf.NAME}:${conf.TAG}"
-        image = docker.build(conf.DOCKER_IMAGE)
+        image = docker.build("${conf.DOCKER_IMAGE}")
       }
 
       stage('Docker Push') {
         docker.withRegistry("https://${conf.REGISTRY}", 'ecr:us-east-1:poc-ecr-credentials') {
-        docker.image('conf.DOCKER_IMAGE').push('latest')
+        docker.image("${conf.DOCKER_IMAGE}").push('latest')
         }
       }
 
