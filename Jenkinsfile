@@ -10,7 +10,7 @@ properties([
   ])
 ])
 
-node('*') {
+node('docker') {
   ws {
     try {
       def conf = [
