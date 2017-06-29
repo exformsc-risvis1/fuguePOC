@@ -19,7 +19,7 @@ node('docker') {
         REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
         VERSION: 'v1.0.0',
         HOSTNAME: 'hello-world.evry.fun',
-        DEPLOY: 'true',
+        DEPLOY: 'false',
       ]
 
       stage('Checkout') {
@@ -33,7 +33,7 @@ node('docker') {
 
       stage('Docker Push') {
         docker.withRegistry('https://${conf.REGISTRY}', conf.REGISTRY) {
-          image.push()
+          docker.image(‘conf.NAME’).push(‘latest’)
         }
       }
 
