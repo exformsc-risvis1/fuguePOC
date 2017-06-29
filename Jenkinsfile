@@ -37,7 +37,7 @@ node('docker') {
         }
       }
 
-      stage("Kubernetes Deploy") {
+      stage('Kubernetes Deploy') {
         def Boolean dryrun = conf.DEPLOY != 'true'
 
         kubernetesDeploy(conf, [k8sCluster: env.K8S_CLUSTER, dryrun: dryrun])
