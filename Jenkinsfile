@@ -32,7 +32,7 @@ node('docker') {
       }
 
       stage('Docker Push') {
-        docker.withRegistry('https://${conf.REGISTRY}', 'poc-creds') {
+        docker.withRegistry('https://${conf.REGISTRY}', poc-creds) {
           docker.image(‘conf.NAME’).push(‘latest’)
         }
       }
