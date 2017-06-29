@@ -38,19 +38,7 @@ node('docker') {
       }
 
       stage('Kubernetes Deploy') {
-        def Boolean dryrun = conf.DEPLOY != 'true'
-
-        kubernetesDeploy(conf, [k8sCluster: env.K8S_CLUSTER, dryrun: dryrun])
-      }
-    } catch (InterruptedException e) {
-      throw e
-    } catch (e) {
-      throw e
-    } finally {
-      step([$class: 'WsCleanup'])
-      // Wait for Jenkins asynchronous resource disposer to pick up before we
-      // close the connection to the worker node.
-      sleep 10
-    }
+        sh("kubectl --namespace=production apply -f deploy/services/")
+        sh("echo http://`kubectl --namespace=production get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
   }
 }
