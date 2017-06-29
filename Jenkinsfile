@@ -16,7 +16,7 @@ node('docker') {
       def conf = [
         NAME: 'exfodemo',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
-        REGISTRY: 'https://432690205111.dkr.ecr.us-east-1.amazonaws.com',
+        REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
         VERSION: 'v1.0.0',
         HOSTNAME: 'hello-world.evry.fun',
         DEPLOY: 'false',
