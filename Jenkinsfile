@@ -4,19 +4,19 @@ properties([
   parameters([
     string(
       name: 'K8S_CLUSTER',
-      defaultValue: 'kubernetes.demo',
+      defaultValue: 'kubernetes',
       description: 'The Kubernetes Cluster you want to deploy to',
     ),
   ])
 ])
 
-node('jenkins-docker-3') {
+node('*') {
   ws {
     try {
       def conf = [
-        NAME: 'kubernetes-infra/hello-world',
+        NAME: 'exfo/hello-world',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
-        REGISTRY: 'k8sinfra.azurecr.io',
+        REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com/exfodemo',
         VERSION: 'v1.0.0',
         HOSTNAME: 'hello-world.evry.fun',
         DEPLOY: 'true',
