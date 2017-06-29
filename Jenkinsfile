@@ -26,30 +26,6 @@ node('docker') {
         checkout scm
       }
 
-      stage('Install') {
-        docker.image('node:8-alpine').inside() {
-          sh 'yarn install --development'
-        }
-      }
-
-      stage('Lint') {
-        docker.image('node-8-alpine').inside() {
-          sh 'yarn run lint'
-        }
-      }
-
-      stage('Test') {
-        docker.image('node-8-alpine').inside() {
-          sh 'yarn run test'
-        }
-      }
-
-      stage('Prune') {
-        docker.image('node-8-alpine').inside() {
-          sh 'yarn install --production'
-        }
-      }
-
       stage('Docker Build') {
         conf.DOCKER_IMAGE = "${conf.REGISTRY}/${conf.NAME}:${conf.TAG}"
         image = docker.build(conf.DOCKER_IMAGE)
@@ -61,7 +37,7 @@ node('docker') {
         }
       }
 
-      stage("Deploy") {
+      stage("Kubernetes Deploy") {
         def Boolean dryrun = conf.DEPLOY != 'true'
 
         kubernetesDeploy(conf, [k8sCluster: env.K8S_CLUSTER, dryrun: dryrun])
