@@ -3,9 +3,9 @@
 properties([
   parameters([
     string(
-      name: 'K8S_CLUSTER_AK',
-      defaultValue: 'kubernetes',
-      description: 'The Kubernetes Cluster you want to deploy to',
+      name: 'VERSION',
+      defaultValue: 'v1.0.0',
+      description: 'The Version of your App.',
     ),
   ])
 ])
@@ -17,9 +17,8 @@ node('docker') {
         NAME: 'exfodemo',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
         REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
-        VERSION: 'v1.0.0',
-        HOSTNAME: 'hello-world.evry.fun',
-        DEPLOY: 'false',
+        HOSTNAME: 'hello-world.exfo.local',
+        NAMESPACE: 'hello-world-app'
       ]
 
       stage('Checkout') {
@@ -38,7 +37,8 @@ node('docker') {
       }
 
       stage('Kubernetes Deploy') {
-        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world.yaml")
+        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_namespace.yaml")
+        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_deployment.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_service.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_ingress.yaml")
       }  
