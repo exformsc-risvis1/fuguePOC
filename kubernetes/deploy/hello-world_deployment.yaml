@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: hello-world
-  namespace: default
+  namespace: "${NAMESPACE}"
   labels:
     app: hello-world
     tier: frontend
