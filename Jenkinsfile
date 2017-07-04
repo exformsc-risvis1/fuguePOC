@@ -43,6 +43,9 @@ node('docker') {
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_service.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_ingress.yaml")
       }  
+    }finally {
+    stage('cleanup') {
+      echo "doing some cleanup..."
     }
   }
 }
