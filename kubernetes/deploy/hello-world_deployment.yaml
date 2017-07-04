@@ -28,7 +28,7 @@ spec:
       containers:
       - name: hello-world
         image: 432690205111.dkr.ecr.us-east-1.amazonaws.com/exfodemo:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
           protocol: TCP
