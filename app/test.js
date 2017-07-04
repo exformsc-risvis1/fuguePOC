@@ -6,11 +6,11 @@ import app from '.';
 
 const req = supertest(app);
 
-test('index', async (t) => {
-  t.plan(2);
+test('index', async(t) => {
+    t.plan(2);
 
-  const res = await req.get('/');
+    const res = await req.get('/');
 
-  t.is(res.status, 200);
-  t.is(res.text, 'Hello World!');
+    t.is(res.status, 200);
+    t.is(res.text, 'Hello World!123');
 });
