@@ -14,3 +14,4 @@ spec:
   selector:
     app: hello-world
     tier: frontend
+  type: LoadBalancer
