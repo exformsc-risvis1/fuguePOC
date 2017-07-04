@@ -17,8 +17,6 @@ node('docker') {
         NAME: 'exfodemo',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
         REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
-        HOSTNAME: 'hello-world.exfo.local',
-        NAMESPACE: 'hello-world-app'
       ]
 
       stage('Checkout') {

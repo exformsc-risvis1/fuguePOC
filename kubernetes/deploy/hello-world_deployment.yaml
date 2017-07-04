@@ -2,11 +2,11 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: hello-world
-  namespace: "${NAMESPACE}"
+  namespace: "helloworld-prod"
   labels:
     app: hello-world
     tier: frontend
-    version: "${VERSION}"
+    version: v.1.0
 spec:
   replicas: 2
   revisionHistoryLimit: 5
@@ -23,11 +23,11 @@ spec:
       labels:
         app: hello-world
         tier: frontend
-        version: "${VERSION}"
+        version: v.1.0
     spec:
       containers:
       - name: hello-world
-        image: "${DOCKER_IMAGE}"
+        image: 432690205111.dkr.ecr.us-east-1.amazonaws.com/exfodemo:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
@@ -49,4 +49,4 @@ spec:
         - name: NODE_ENV
           value: production
       imagePullSecrets:
-      - name: "${REGISTRY}"
+      - name: registry-pull

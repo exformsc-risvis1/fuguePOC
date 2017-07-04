@@ -1,19 +1,18 @@
----
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-world
-  namespace: "${NAMESPACE}"
+  namespace: "helloworld-prod"
   labels:
     app: hello-world
     tier: frontend
-    version: "${VERSION}"
+    version: v1.0
   annotations:
     traefik.frontend.rule.type: PathPrefix
     traefik.frontend.entryPoints: https
 spec:
   rules:
-  - host: "${HOSTNAME}"
+  - host: "helloworld-prod.exfo.com"
     http:
       paths:
       - path: /

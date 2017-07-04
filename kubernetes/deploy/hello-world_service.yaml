@@ -2,11 +2,11 @@ kind: Service
 apiVersion: v1
 metadata:
   name: hello-world
-  namespace: "${NAMESPACE}"
+  namespace: "helloworld-prod"
   labels:
     app: hello-world
     tier: frontend
-    version: "${VERSION}"
+    version: v1.0
 spec:
   ports:
     - port: 80
