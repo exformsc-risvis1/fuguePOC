@@ -17,6 +17,8 @@ node('docker') {
         NAME: 'exfodemo',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
         REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
+        NAMESPACE: 'helloworld-prod',
+        DEPLOYMENT: "hello-world"
       ]
 
       stage('Checkout') {
@@ -37,6 +39,7 @@ node('docker') {
       stage('Kubernetes Deploy') {
         sh("kubectl --kubeconfig=kubernetes/identity/config apply -f kubernetes/deploy/hello-world_namespace.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config apply -f kubernetes/deploy/hello-world_deployment.yaml")
+        sh("kubectl --kubeconfig=kubernetes/identity/config rolling-update deployment/${conf.DEPLOYMENT} -f kubernetes/deploy/hello-world_deployment.yaml --namespace ${conf.NAMESPACE}")
         sh("kubectl --kubeconfig=kubernetes/identity/config apply -f kubernetes/deploy/hello-world_service.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config apply -f kubernetes/deploy/hello-world_ingress.yaml")
       }  
