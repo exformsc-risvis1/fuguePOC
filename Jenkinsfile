@@ -38,6 +38,7 @@ node('docker') {
       }
 
       stage('Kubernetes Deploy') {
+        sh("echo '52.72.159.222 kubernetes' >> /etc/hosts")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_service.yaml")
         sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_ingress.yaml")
