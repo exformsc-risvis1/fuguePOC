@@ -23,7 +23,7 @@ spec:
       labels:
         app: hello-world
         tier: frontend
-        version: v.1.0
+        version: v.1.2
     spec:
       containers:
       - name: hello-world
