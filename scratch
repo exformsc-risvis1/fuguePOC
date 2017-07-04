@@ -1,0 +1,1 @@
+sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")

@@ -38,7 +38,8 @@ node('docker') {
       }
 
       stage('Kubernetes Deploy') {
-        sh("kubectl --namespace=production apply -f deploy/services/")
-        sh("echo http://`kubectl --namespace=production get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
+        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world.yaml")
+        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_service.yaml")
+        sh("kubectl --kubeconfig=kubernetes/identity/config --namespace=production apply -f kubernetes/deploy/hello-world_ingress.yaml")
   }
 }
