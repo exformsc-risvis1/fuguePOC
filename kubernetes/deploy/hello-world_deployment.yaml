@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: hello-world
-  namespace: "helloworld-prod"
+  namespace: "helloworld-devel"
   labels:
     app: hello-world
     tier: frontend
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: 432690205111.dkr.ecr.us-east-1.amazonaws.com/exfodemo:latest
+        image: 432690205111.dkr.ecr.us-east-1.amazonaws.com/exfodemo:devel-latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000

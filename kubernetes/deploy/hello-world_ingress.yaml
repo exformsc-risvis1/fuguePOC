@@ -2,11 +2,11 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-world
-  namespace: "helloworld-prod"
+  namespace: "helloworld-devel"
   labels:
     app: hello-world
     tier: frontend
-    version: v1.0
+    version: v.1.0
   annotations:
     traefik.frontend.rule.type: PathPrefix
     traefik.frontend.entryPoints: https

@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: hello-world
-  namespace: "helloworld-prod"
+  namespace: "helloworld-devel"
   labels:
     app: hello-world
     tier: frontend
