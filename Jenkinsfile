@@ -31,7 +31,7 @@ node('docker') {
       }
 
       stage('Docker Push') {
-        docker.withRegistry("https://${conf.REGISTRY}", 'ecr:us-east-1:ECR') {
+        docker.withRegistry("https://${conf.REGISTRY}", 'ecr:us-east-1:Jenkins-user') {
         docker.image("${conf.DOCKER_IMAGE}").push('latest')
         }
       }
