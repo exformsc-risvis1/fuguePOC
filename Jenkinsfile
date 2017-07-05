@@ -14,9 +14,9 @@ node('docker') {
   ws {
     try {
       def conf = [
-        NAME: 'exfodemo',
+        NAME: 'exfo-poc',
         TAG: "${env.BRANCH_NAME}-${env.BUILD_NUMBER}",
-        REGISTRY: '432690205111.dkr.ecr.us-east-1.amazonaws.com',
+        REGISTRY: '995127052041.dkr.ecr.us-east-1.amazonaws.com',
         NAMESPACE: 'helloworld-prod',
         DEPLOYMENT: "hello-world"
       ]
