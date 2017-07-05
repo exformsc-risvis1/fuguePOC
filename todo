@@ -1,0 +1,4 @@
+replace identity/config
+create AWS registry. REplace value in Jenkinsfile
+REplace value in Kubernetes/deploy/deployment
+on jenkins, add Labels:docker on Nodes
