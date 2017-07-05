@@ -31,7 +31,7 @@ node('docker') {
       }
 
       stage('Docker Push') {
-        docker.withRegistry("https://${conf.REGISTRY}", 'ecr:us-east-1:poc-ecr-credentials') {
+        docker.withRegistry("https://${conf.REGISTRY}", 'ecr:us-east-1:ECR') {
         docker.image("${conf.DOCKER_IMAGE}").push('latest')
         }
       }
